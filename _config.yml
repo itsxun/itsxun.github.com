@@ -64,7 +64,7 @@ gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: b59c65616bf517e53d1c                            #生成的clientID
   clientSecret: 1d3610e6c6e410fad2798b95d8e32f8acd06dcca    #生成的clientSecret
-  repo: itsxun.github.io    #仓库名称
+  repo: itsxun.github.com    #仓库名称
   owner: itsxun    #github用户名
   admin: itsxun
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
