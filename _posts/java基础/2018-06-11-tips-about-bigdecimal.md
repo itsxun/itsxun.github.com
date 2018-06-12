@@ -19,6 +19,18 @@ tags:
 - BigDecimal(int)       # 保证准确无误
 ```
 
+## 成员变量
+- precision 精度(变量长度)
+  - 0 返回 1
+  - 01 返回 1
+  - 01.10 返回 3
+
+- scale 小数位数
+  - 01.000 返回 3
+
+- intCompact
+  - 用于计算辅助，当值的绝对值小于Long.MAX_VALUE，值会被压缩存储在这个数中加快计算
+  
 ## 常用的方法
 - 加法: add
   ```java
@@ -35,18 +47,17 @@ tags:
 - 除法
   ```java
     b1=b1.divide(b2);
+    //但是不建议除法直接这么计算，推荐使用带精度，带有RoundingMode(舍入模式)的计算方法
+    //比如我想计算10 / 3的值，保留两位小数，四舍五入:
+      BigDecimal b=new BigDecimal("10").divide(new BigDecimal("3"), 2, RoundingMode.HALF_UP);
   ```
->  但是不建议除法直接这么计算，推荐使用带精度，带有RoundingMode(舍入模式)的计算方法
 
-比如我想计算10 / 3的值，保留两位小数，四舍五入:
-```java
-  BigDecimal b=new BigDecimal("10").divide(new BigDecimal("3"), 2, RoundingMode.HALF_UP);
-```
-
-- 大小比较
+- 大小比较 compareTo
 ```java
 //不能用equals，需要用compareTo
 new BigDecimal("1").compareTo(new BigDecimal("2"));
+
+equals会先检查是否类型一直，在检查小数位数是否一致，最后判断
 ```
 
 - 计算余数
@@ -54,6 +65,16 @@ new BigDecimal("1").compareTo(new BigDecimal("2"));
 BigDecimal[] bs= BigDecimal("10").divideAndRemainder(new BigDecimal("4"));
 bs[1]就是余数
 ```
+- number格式化
+```
+//一个公共方法，去除开头的0，去除结尾的0，指数形式会转为正常显示
+public static String format(String str){
+  //stripTrailingZeros: 删除开头的，结尾的0
+  //toPlainString: toString，并且同时会转指数形式成为正常的显示
+  return new BigDecimal(str).stripTrailingZeros().toPlainString();
+}
+```
+
 
 ## 关于RoundingMode的效果
 - UP
