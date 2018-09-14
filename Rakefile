@@ -8,8 +8,7 @@ desc "创建新blog："
 task :new do
     puts "请输入要创建的文件名："
     @url = STDIN.gets.chomp
-    puts "请输入 Blog 标题："
-    @name = STDIN.gets.chomp
+    @name = "#{@url}"
     puts "请输入博客分类："
     @categories = STDIN.gets.chomp
 
