@@ -13,7 +13,7 @@ task :new do
     @categories = STDIN.gets.chomp
 
     @slug = "#{@url}"
-    @slug = @slug.downcase.strip.gsub(' ', '-')
+    @slug = @slug.strip.gsub(' ', '-')
     @date = Time.now.strftime("%F")
     @post_name = "_posts/#{@categories}/#{@date}-#{@slug}.md"
     if File.exist?(@post_name)
