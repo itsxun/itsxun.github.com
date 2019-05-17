@@ -1,4 +1,4 @@
-# encoding: utf-8
+﻿# encoding: gbk
 
 task :default => :new
 
@@ -21,7 +21,7 @@ task :new do
             abort("Error: 文件名已被使用 (ノ=Д=)ノ┻━┻ ")
     end
     FileUtils.touch(@post_name)
-    open(@post_name, 'a:utf-8') do |file|
+    open(@post_name, 'a:gbk') do |file|
             file.puts "---"
             file.puts "layout: post"
             file.puts "title: #{@name}"
