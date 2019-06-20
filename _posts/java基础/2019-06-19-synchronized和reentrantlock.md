@@ -244,7 +244,8 @@ public final void await() throws InterruptedException {
     int interruptMode = 0;
     /**
       检查自己是否进入了AQS队列
-      如果不在，说明没有被signal，没有竞争锁的资格，调用park方法沉睡。一直到自己加入了AQS队列。加入AQS队列的契机就是被signal后。
+      如果不在，说明没有被signal，没有竞争锁的资格，调用park方法沉睡。
+      一直到自己加入了AQS队列。加入AQS队列的契机就是被signal后。
     **/
     while (!isOnSyncQueue(node)) {
         LockSupport.park(this);
@@ -263,7 +264,8 @@ public final void await() throws InterruptedException {
         reportInterruptAfterWait(interruptMode);
 }
 
-//这个是acquireQueued方法，死循环的竞争锁，一次未竞争到，parkAndCheckInterrupt里面会再次调用park方法沉睡
+//这个是acquireQueued方法，死循环的竞争锁，
+//一次未竞争到，parkAndCheckInterrupt里面会再次调用park方法沉睡
 final boolean acquireQueued(final Node node, int arg) {
     boolean failed = true;
     try {
