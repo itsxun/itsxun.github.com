@@ -19,6 +19,12 @@ vmware -> 编辑 -> 虚拟网络编辑器 -> 选择VMnet8 -> 右下角更改设�
 
 ### 防火墙
 min版本的linux也有防火墙的，免的麻烦，都关了吧，记得开机禁用。
+```shell
+# 这个是firewall的关闭，iptable的自己搜下
+firewall-cmd --state
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+```
 
 ### 关闭selinux
 
@@ -35,18 +41,18 @@ SELINUX=disabled
 vi /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
 
-***添加以下的配置（需要根据上面的网关来设置***
+***添加以下的配置（需要根据上面的网关来设置)***
 ```java
 IPADDR="192.168.80.100"   //在网关的网段内自己随便设置一个
 NETMASK="255.255.255.0"   
 NETWORK="192.168.80.0"    
-GATEWAY="192.168.80.2"    //最重要的网关不能设置错
+GATEWAY="192.168.80.2"
 ONBOOT="yes"
 DNS1="8.8.8.8"
 DNS2="114.114.114.114"
 ```
 
-### 修改hosts文件
+### 修改hosts文件，如果需要搭建集群
 将几台服务器的地址贴进去
 
 ```shell
