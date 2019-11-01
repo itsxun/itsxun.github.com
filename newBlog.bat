@@ -7,7 +7,7 @@ set day=%date:~11,2%
 set today=%year%-%month%-%day%
 set time=%time:~0,8%
 ::编辑器
-set editor=C:\Users\xun\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\GitHub, Inc\Atom
+set editor=C:\Program Files\Sublime Text 3\sublime_text.exe
 SET pwd=%cd%
 
 echo 请输入博客分类：
